@@ -6,6 +6,7 @@
         <th>Nom</th>
         <th>Prénom</th>
         <th>Adresse</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
 
@@ -15,7 +16,31 @@
         <td>{{ student.value.getNom() }}</td>
         <td>{{ student.value.getPrenom() }}</td>
         <td>{{ student.value.getAdresse() }}</td>
+        <td>
+          <button
+            type="button"
+          >
+            Modifier
+          </button>
+          <button
+            type="button"
+          >
+            Supprimer
+          </button>
+        </td>
       </tr>
     </tbody>
+
+    <tfoot>
+      <tr>
+          <td colspan="5">
+            <button
+              type="button"
+            >
+              Nouveau
+            </button>
+          </td>
+      </tr>
+    </tfoot>
   </table>
 </div>
