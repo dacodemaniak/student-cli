@@ -12,12 +12,13 @@ export class AppComponent {
   public studentCollection: StudentCollection;
 
   public constructor(private api: ApiService){
+    this.studentCollection = new StudentCollection();
     this.api.getAllStudents().subscribe((studentPoorList: any) => {
         const students: Array<any> = studentPoorList;
 
         // Euh Bulent, t'es sûr d'avoir des élèves ?
         if (!students.hasOwnProperty('httpStatus')){
-          this.studentCollection = new StudentCollection();
+          
           students.forEach((student: any) => {
             let aStudent: Student = (new Student())
               .setId(student.id)
