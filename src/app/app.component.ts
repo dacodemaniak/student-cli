@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from './share/services/api.service';
 import { Student } from './share/models/student';
 import { StudentCollection } from './share/models/student-collection';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,12 @@ import { StudentCollection } from './share/models/student-collection';
 export class AppComponent {
   public studentCollection: StudentCollection;
 
-  public constructor(private api: ApiService){
-    this.studentCollection = new StudentCollection();
+  public constructor(
+    private api: ApiService,
+    private toastrService: ToastrService
+  ){
+    this.studentCollection = new StudentCollection(this.toastrService, api);
+
     this.api.getAllStudents().subscribe((studentPoorList: any) => {
         const students: Array<any> = studentPoorList;
 
@@ -30,5 +35,13 @@ export class AppComponent {
           });
         }
     });
+  }
+
+  /**
+   * Removes the selected student
+   */
+  public removeStudent(student: Student): void {
+    console.log('Have to kill ' + student.getId());
+    this.studentCollection.remove(student.getId());
   }
 }
