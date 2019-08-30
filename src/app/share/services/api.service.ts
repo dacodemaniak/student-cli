@@ -29,4 +29,11 @@ export class ApiService {
       }
     );
   }
+
+  public add(student: Student): Observable<any> {
+    return this.httpClient.post(
+      ApiService._API_ROOT_ + 'eleve',
+      student
+    );
+  }
 }
